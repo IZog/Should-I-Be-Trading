@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #0a0e27;
+  --color-terminal-panel: #111638;
+  --color-terminal-panel-hover: #161b45;
+  --color-terminal-border: #1a2050;
+  --color-terminal-green: #00ff88;
+  --color-terminal-red: #ff4444;
+  --color-terminal-amber: #ffaa00;
+  --color-terminal-blue: #4488ff;
+  --color-terminal-text: #e0e0e0;
+  --color-terminal-text-dim: #888888;
+  --color-terminal-cyan: #00d4ff;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-terminal-bg);
+  color: var(--color-terminal-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-terminal-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-terminal-border); border-radius: 3px; }
+
+/* Ticker scroll animation */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-scroll {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+/* Pulse animation for LIVE indicator */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Cursor blink for terminal analysis */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Skeleton loading pulse */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Glow effects */
+.glow-green { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.2); }
+.glow-red { text-shadow: 0 0 20px rgba(255, 68, 68, 0.5), 0 0 40px rgba(255, 68, 68, 0.2); }
+.glow-amber { text-shadow: 0 0 20px rgba(255, 170, 0, 0.5), 0 0 40px rgba(255, 170, 0, 0.2); }
