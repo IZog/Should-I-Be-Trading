@@ -36,8 +36,9 @@ if STATIC_DIR.is_dir():
 
     @app.get("/{full_path:path}")
     async def serve_spa(request: Request, full_path: str):
-        file_path = STATIC_DIR / full_path
-        if file_path.is_file():
+        # Resolve and confine to STATIC_DIR so "%2e%2e/" can't escape it
+        file_path = (STATIC_DIR / full_path).resolve()
+        if file_path.is_relative_to(STATIC_DIR) and file_path.is_file():
             return FileResponse(str(file_path))
         return FileResponse(str(STATIC_DIR / "index.html"))
 else:

@@ -508,16 +508,17 @@ def calc_market_quality(
 
     execution_window_score = calc_execution_window_score(indicators)
 
-    # Decision logic
-    if market_quality_score >= 65 and execution_window_score >= 55:
+    # Decision logic: driven by market quality only. The execution window
+    # feeds the explanation, not the verdict.
+    if market_quality_score >= 80:
         decision = "YES"
-        decision_detail = "Conditions are favorable for trading."
-    elif market_quality_score >= 45 or execution_window_score >= 45:
+        decision_detail = "Full position sizing, press risk."
+    elif market_quality_score >= 60:
         decision = "CAUTION"
-        decision_detail = "Mixed signals. Reduce position sizes and be selective."
+        decision_detail = "Half size, A+ setups only."
     else:
         decision = "NO"
-        decision_detail = "Conditions are unfavorable. Stay on the sidelines."
+        decision_detail = "Avoid trading, preserve capital."
 
     subscores = {
         "volatility": {
